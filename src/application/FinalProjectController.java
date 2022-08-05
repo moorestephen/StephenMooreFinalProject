@@ -1,8 +1,5 @@
 package application;
 
-import java.math.BigDecimal;
-
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
