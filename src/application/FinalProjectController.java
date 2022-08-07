@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class FinalProjectController {
-	Stage applicationStage;
+	static Stage applicationStage;
 
     @FXML
     private Button createOrderButton;
@@ -130,44 +130,12 @@ public class FinalProjectController {
 
     @FXML
     void goToCreateOrder(ActionEvent goToCreateOrder) {
-    	Scene menuScene = applicationStage.getScene();
-    	// Create Order Scene
-    	// Scene Features
-    	BorderPane createOrderContainer = new BorderPane();
-    	HBox bottomOfPane = new HBox();
-    	Button returnToMenu = new Button("Return to Menu");
-    	// Adds returnToMenu centered right in the bottom of the createOrder Container
-    	bottomOfPane.getChildren().addAll(returnToMenu);
-    	bottomOfPane.setAlignment(Pos.CENTER_RIGHT);
-    	
-    	// Feature Actions
-    	returnToMenu.setOnAction(pressed -> applicationStage.setScene(menuScene));
-    	
-    	createOrderContainer.setPadding(new Insets(20));
-    	createOrderContainer.setBottom(bottomOfPane);
-    	Scene createOrderScene = new Scene(createOrderContainer, 800, 600);
-    	applicationStage.setScene(createOrderScene);
+    	CreateOrderScene.loadScene();
     }
 
     @FXML
     void goToReviewOrder(ActionEvent goToReviewOrder) {
-    	Scene menuScene = applicationStage.getScene();
-    	// Review Order Scene
-    	// Scene Features
-    	BorderPane reviewOrderContainer = new BorderPane();
-    	HBox bottomOfPane = new HBox();
-    	Button returnToMenu = new Button("Return to Menu");
-    	// Adds returnToMenu centered right in the bottom of the createOrder Container
-    	bottomOfPane.getChildren().addAll(returnToMenu);
-    	bottomOfPane.setAlignment(Pos.CENTER_RIGHT);
-    	
-    	// Feature Actions
-    	returnToMenu.setOnAction(pressed -> applicationStage.setScene(menuScene));
-    	
-    	reviewOrderContainer.setPadding(new Insets(20));
-    	reviewOrderContainer.setBottom(bottomOfPane);
-    	Scene reviewOrderScene = new Scene(reviewOrderContainer, 800, 600);
-    	applicationStage.setScene(reviewOrderScene);
+    	ReviewOrderScene.loadScene();
     }
 
 }
