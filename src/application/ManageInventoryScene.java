@@ -32,29 +32,29 @@ public class ManageInventoryScene extends FinalProjectController {
     	// Middle of BorderPane - contains table and place to enter new values
     	VBox middleOfPane = new VBox();
     	
-    	TableView<Inventory> inventoryTable = new TableView<Inventory>();
+    	TableView<Item> inventoryTable = new TableView<Item>();
     	
     	inventoryTable.setMaxSize(500, 300);
     	inventoryTable.setPlaceholder(new Label("No inventory to display"));
     	
-    	TableColumn<Inventory, String> itemCol = new TableColumn<Inventory, String>("Item");
-    	itemCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("item"));
+    	TableColumn<Item, String> itemCol = new TableColumn<Item, String>("Item");
+    	itemCol.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
     	itemCol.setPrefWidth(150);
     	
-    	TableColumn<Inventory, Integer> tagCol = new TableColumn<Inventory, Integer>("Tag");
-    	tagCol.setCellValueFactory(new PropertyValueFactory<Inventory, Integer>("tag"));
+    	TableColumn<Item, Integer> tagCol = new TableColumn<Item, Integer>("Tag");
+    	tagCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("tag"));
     	tagCol.setPrefWidth(50);
     	
-    	TableColumn<Inventory, Double> wholesalePriceCol = new TableColumn<Inventory, Double>("Wholesale Price");
-    	wholesalePriceCol.setCellValueFactory(new PropertyValueFactory<Inventory, Double>("wholesalePrice"));
+    	TableColumn<Item, Double> wholesalePriceCol = new TableColumn<Item, Double>("Wholesale Price");
+    	wholesalePriceCol.setCellValueFactory(new PropertyValueFactory<Item, Double>("wholesalePrice"));
     	wholesalePriceCol.setPrefWidth(100);
     	
-    	TableColumn<Inventory, Double> retailPriceCol = new TableColumn<Inventory, Double>("Retail Price");
-    	retailPriceCol.setCellValueFactory(new PropertyValueFactory<Inventory, Double>("retailPrice"));
+    	TableColumn<Item, Double> retailPriceCol = new TableColumn<Item, Double>("Retail Price");
+    	retailPriceCol.setCellValueFactory(new PropertyValueFactory<Item, Double>("retailPrice"));
     	retailPriceCol.setPrefWidth(100);
     	
-    	TableColumn<Inventory, Integer> currentStockCol = new TableColumn<Inventory, Integer>("Stock");
-    	currentStockCol.setCellValueFactory(new PropertyValueFactory<Inventory, Integer>("stock"));
+    	TableColumn<Item, Integer> currentStockCol = new TableColumn<Item, Integer>("Stock");
+    	currentStockCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("stock"));
     	currentStockCol.setPrefWidth(100);
     	
     	inventoryTable.getColumns().addAll(itemCol, tagCol, wholesalePriceCol, retailPriceCol, currentStockCol);

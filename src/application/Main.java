@@ -17,8 +17,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			VBox root = loader.load(new FileInputStream("src/application/FinalProjectView.fxml"));
 			Scene scene = new Scene(root,800,600);
-			FinalProjectController controller = (FinalProjectController)loader.getController();
-			controller.applicationStage = primaryStage;
+			FinalProjectController.applicationStage = primaryStage;
 			
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Business Manager");
