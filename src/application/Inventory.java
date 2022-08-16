@@ -17,7 +17,8 @@ public class Inventory {
 	// Checks if all arguments as strings will be valid when parsed to create a new item instance variable
 	public static boolean checkItemValidity(String itemToAdd, String tagToAdd, String wholesalePriceToAdd, String retailPriceToAdd, String stockToAdd) {
 		if (ValueValidation.checkString(itemToAdd) && ValueValidation.checkNaturalNum(tagToAdd) && ValueValidation.checkValidMoney(wholesalePriceToAdd)
-				&& ValueValidation.checkValidMoney(retailPriceToAdd) && ValueValidation.checkWholeNum(stockToAdd) && !ValueValidation.checkTagRepeats(tagToAdd)) {
+				&& ValueValidation.checkValidMoney(retailPriceToAdd) && ValueValidation.checkWholeNum(stockToAdd) && !ValueValidation.checkTagRepeats(tagToAdd) 
+				&& !ValueValidation.checkNameRepeats(itemToAdd)) {
 			return true;
 		} else {
 			return false;
@@ -31,6 +32,28 @@ public class Inventory {
 				Double.parseDouble(wholesalePriceToAdd),
 				Double.parseDouble(retailPriceToAdd),
 				Integer.parseInt(stockToAdd));
+	}
+	
+	// Search for while making an order
+	public static Item searchInventoryName(String nameSearched) {
+		for (Item inventoryItem : listInventory) {
+			if (inventoryItem.getItem().equals(nameSearched)) {
+				return new Item(inventoryItem);
+			}
+		}
+		// Returns a null item if no match is found - must be managed at next step
+		return null;
+	}
+	
+	
+	public static Item searchInventoryTag(String tagSearched) {
+		for (Item inventoryItem : listInventory) {
+			if (inventoryItem.getTag() == Integer.parseInt(tagSearched)) {
+				return new Item(inventoryItem);
+			}
+		}
+		// Returns a null item if no match is found - must be managed at next step
+		return null;
 	}
 	
 	public static ObservableList<Item> getObservableListInventory() {

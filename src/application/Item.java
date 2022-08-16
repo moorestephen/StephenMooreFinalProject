@@ -7,6 +7,8 @@ public class Item {
 	private double retailPrice;
 	private int stock;
 	
+	
+	
 	public Item(String item, int tag, double wholesalePrice, double retailPrice, int stock) {
 		this.item = item;
 		this.tag = tag;
@@ -15,7 +17,11 @@ public class Item {
 		this.stock = stock;
 	}
 	
-		public String getItem() {
+	public Item(Item toCopy) {
+		this(new String(toCopy.getItem()), toCopy.getTag(), toCopy.getWholesalePrice(), toCopy.getRetailPrice(), toCopy.getStock());
+	}
+	
+	public String getItem() {
 		return item;
 	}
 	

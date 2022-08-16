@@ -7,6 +7,7 @@ public class ValueValidation {
 	final static String checkValidMoneyErrorMsg = "Enter a value greater than or equal to 0";
 	final static String checkWholeNumErrorMsg = "Enter an integer greater than or equal to 1";
 	final static String checkTagRepeatsErrorMsg = "Tag already used for another item. Enter a unique tag";
+	final static String checkItemRepeatsErrorMsg = "Name already used for another item. Enter a unique name";
 	
 	public static boolean checkString(String string) {
 		if (string != null && string != "")
@@ -17,7 +18,7 @@ public class ValueValidation {
 
 	public static boolean checkNaturalNum(String naturalNumber) { 
 		try {
-			if (Integer.parseInt(naturalNumber) >= 0) {
+			if (Integer.parseInt(naturalNumber) > 0) {
 				return true;
 			} else {
 				return false;
@@ -41,7 +42,7 @@ public class ValueValidation {
 
 	public static boolean checkWholeNum(String wholeNumber) {
 		try {
-			if (Integer.parseInt(wholeNumber) > 0) {
+			if (Integer.parseInt(wholeNumber) >= 0) {
 				return true;
 			} else {
 				return false;
@@ -49,6 +50,17 @@ public class ValueValidation {
 		} catch(NumberFormatException e) {
 			return false;
 		}
+	}
+	
+	public static boolean checkNameRepeats(String inputName) {
+		boolean repeatFound = false;
+		if (Inventory.getListInventory().size() > 0 && checkString(inputName)) {
+			for (Integer i = 0; i < Inventory.getListInventory().size(); i++) {
+				if (Inventory.getListInventory().get(i).getItem().equals(inputName))
+					repeatFound = true;
+			}
+		}
+		return repeatFound;
 	}
 	
 	public static boolean checkTagRepeats(String inputTag) {
@@ -61,4 +73,6 @@ public class ValueValidation {
 		}
 		return repeatFound;
 	}
+	
+	
 }

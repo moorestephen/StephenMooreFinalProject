@@ -30,7 +30,7 @@ public class ManageInventoryScene extends FinalProjectController {
     	Button returnToMenu = new Button("Return to Menu");
     	// Adds returnToMenu centered right in the bottom of the createOrder Container
     	bottomOfPane.getChildren().addAll(returnToMenu);
-    	bottomOfPane.setAlignment(Pos.CENTER_RIGHT);
+    	bottomOfPane.setAlignment(Pos.CENTER_LEFT);
     	
     	// Middle of BorderPane - contains table and place to enter new values
     	VBox middleOfPane = new VBox();
@@ -124,6 +124,8 @@ public class ManageInventoryScene extends FinalProjectController {
     					invalidTextfield(itemCurrentStock, "Current Stock", ValueValidation.checkWholeNumErrorMsg);
     				if (ValueValidation.checkTagRepeats(inputTag)) 
 						invalidTextfield(itemTag, "Item Tag", ValueValidation.checkTagRepeatsErrorMsg);
+    				if (ValueValidation.checkNameRepeats(inputName))
+    					invalidTextfield(itemName, "Item Name", ValueValidation.checkItemRepeatsErrorMsg);
     			}
     		}
     	};

@@ -18,7 +18,7 @@ public class ReviewOrderScene extends FinalProjectController {
     	Button returnToMenu = new Button("Return to Menu");
     	// Adds returnToMenu centered right in the bottom of the createOrder Container
     	bottomOfPane.getChildren().addAll(returnToMenu);
-    	bottomOfPane.setAlignment(Pos.CENTER_RIGHT);
+    	bottomOfPane.setAlignment(Pos.CENTER_LEFT);
     	
     	// Feature Actions
     	returnToMenu.setOnAction(pressed -> applicationStage.setScene(menuScene));

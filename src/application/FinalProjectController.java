@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,7 +36,7 @@ public class FinalProjectController {
 
     @FXML
     void goToReviewOrder(ActionEvent goToReviewOrder) {
-    	ReviewOrderScene.loadScene();
+    	// ReviewOrderScene.loadScene();
     }
     
 	public static void clearAllTextfields(ArrayList<TextField> textfieldsToClear) {
@@ -51,6 +52,11 @@ public class FinalProjectController {
 		invalidTextfieldAlert.showAndWait();
 		textfield.clear();
 	}
-
+	
+	public static void clearLabels(ArrayList<Label> labelsToClear) {
+		for (Label label : labelsToClear) {
+			label.setText("");
+		}
+	}
 }
 
