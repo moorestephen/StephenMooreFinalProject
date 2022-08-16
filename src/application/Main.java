@@ -20,7 +20,7 @@ public class Main extends Application {
 			FinalProjectController.applicationStage = primaryStage;
 			
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Business Manager");
+			primaryStage.setTitle("Inventory Management System");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

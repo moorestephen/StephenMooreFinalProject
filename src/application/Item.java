@@ -19,16 +19,8 @@ public class Item {
 		return item;
 	}
 	
-	public void setItem(String item) {
-		this.item = item;
-	}
-	
 	public int getTag() {
 		return tag;
-	}
-	
-	public void setTag(int tag) {
-		this.tag = tag;
 	}
 	
 	public double getWholesalePrice() {
