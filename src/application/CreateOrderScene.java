@@ -20,10 +20,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-
-public abstract class CreateOrderScene extends FinalProjectController {
-	
+/**
+ * Abstract class CreateOrderScene extends FinalProjectController and loads the create order scene
+ * @author steph
+ *
+ */
+public class CreateOrderScene extends FinalProjectController {
+	/**
+	 * loadScene sets the Scene to the createOrder scene, which is coded directly into the method
+	 * It also includes the action events for the buttons included in the scene (i.e., it loads the entire scene)
+	 */
 	public static void loadScene() {
 		Scene menuScene = applicationStage.getScene();
     	

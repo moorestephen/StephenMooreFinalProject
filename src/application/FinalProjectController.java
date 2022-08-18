@@ -11,7 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+/**
+ * The FinalProjectController implements a linked FXML file for the application's menu page and includes a few GUI-related methods 
+ * @author steph
+ *
+ */
 public class FinalProjectController {
 	static Stage applicationStage;
 	
@@ -33,7 +37,8 @@ public class FinalProjectController {
     void goToCreateOrder(ActionEvent goToCreateOrder) {
     	CreateOrderScene.loadScene();
     }
-
+    
+    // goToReviewOrder is a button intended to be completed in a future iteration of this project; ignore for now
     @FXML
     void goToReviewOrder(ActionEvent goToReviewOrder) {
     	// ReviewOrderScene.loadScene();
