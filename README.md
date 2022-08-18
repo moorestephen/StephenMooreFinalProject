@@ -9,7 +9,7 @@ Features to be added in next implementation:
   - Ability to edit valus in items already in inventory
     -> probably accomplished by having a similar search UI to the order scene but instead allowing for the adding/subtracting of stock and modification of
        wholesale and/or retail price
-  - Ability to remove items from inventory:
+  - Ability to remove items from inventory
     -> likely easy, would only require a UI that would employ a similar search method as in the order class but instead remove the Item object if found
   - Ability to modify order quantities without having to clear and restart the order
     -> probably accomplished by creating a search method like that in the order class (searching from inventory) but have it instead search from the order list
