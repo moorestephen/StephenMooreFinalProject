@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class CreateOrderScene extends FinalProjectController {
+public abstract class CreateOrderScene extends FinalProjectController {
 	
 	public static void loadScene() {
 		Scene menuScene = applicationStage.getScene();
@@ -203,28 +203,36 @@ public class CreateOrderScene extends FinalProjectController {
     	// Add item to order (of quantity entered)
     	EventHandler<ActionEvent> addingItemToOrder = new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent buttonPressed) {
-    			int currentStockItemToBeAdded = Integer.parseInt(itemStock.getText());
-    			if (Order.findInOrderTag(itemTag.getText())) {
-    				// Item is already in order
-    				quantityError.setText("Item " + itemName.getText() + " is already in the order. Enter items not already added to the order");
-    			} else if (ValueValidation.checkNaturalNum(addItemQuantity.getText()) && Integer.parseInt(addItemQuantity.getText()) <= currentStockItemToBeAdded) {
-    				Order.addToOrder(new ItemOrder(Inventory.searchInventoryTag(itemTag.getText()), Integer.parseInt(addItemQuantity.getText())));
-    				quantityError.setText("");
-    				orderTable.refresh();
-    				addItemQuantity.clear();
-    				
-    				subtotalCalc.setText(String.valueOf(Order.df.format(Order.calculateSubtotal())));
-    				taxCalc.setText(String.valueOf(Order.df.format(Order.calculateTax())));
-    				totalCalc.setText(String.valueOf(Order.df.format(Order.calculateTotal())));
-    				stockingPriceCalc.setText(String.valueOf(Order.df.format(Order.calculateStockingPrice())));
-    				profitCalc.setText(String.valueOf(Order.df.format(Order.calculateProfit())));
-    				
-    			} else if (ValueValidation.checkNaturalNum(addItemQuantity.getText())){
-    				quantityError.setText("Insufficient item stock. Only " + itemStock.getText() + " available");
-    				addItemQuantity.clear();
+    			if (ValueValidation.checkInteger(itemStock.getText())) {
+    				if (ValueValidation.checkNaturalNum(itemStock.getText())) {
+		    			int currentStockItemToBeAdded = Integer.parseInt(itemStock.getText());
+		    			if (Order.findInOrderTag(itemTag.getText())) {
+		    				// Item is already in order
+		    				quantityError.setText("Item " + itemName.getText() + " is already in the order. Enter items not already added to the order");
+		    			} else if (ValueValidation.checkNaturalNum(addItemQuantity.getText()) && Integer.parseInt(addItemQuantity.getText()) <= currentStockItemToBeAdded) {
+		    				Order.addToOrder(new ItemOrder(Inventory.searchInventoryTag(itemTag.getText()), Integer.parseInt(addItemQuantity.getText())));
+		    				quantityError.setText("");
+		    				orderTable.refresh();
+		    				addItemQuantity.clear();
+		    				
+		    				subtotalCalc.setText(String.valueOf(Order.df.format(Order.calculateSubtotal())));
+		    				taxCalc.setText(String.valueOf(Order.df.format(Order.calculateTax())));
+		    				totalCalc.setText(String.valueOf(Order.df.format(Order.calculateTotal())));
+		    				stockingPriceCalc.setText(String.valueOf(Order.df.format(Order.calculateStockingPrice())));
+		    				profitCalc.setText(String.valueOf(Order.df.format(Order.calculateProfit())));
+		    				
+		    			} else if (ValueValidation.checkNaturalNum(addItemQuantity.getText())){
+		    				quantityError.setText("Insufficient item stock. Only " + itemStock.getText() + " available");
+		    				addItemQuantity.clear();
+		    			} else {
+		    				quantityError.setText("");
+		    				invalidTextfield(addItemQuantity, "Item Quantity", ValueValidation.checkNaturalNumErrorMsg);
+		    			}
+		    		} else {
+		    			quantityError.setText("Please enter a positive integer. \" " + addItemQuantity.getText() + "\" is not a positive integer");
+		    		} 
     			} else {
-    				quantityError.setText("");
-    				invalidTextfield(addItemQuantity, "Item Quantity", ValueValidation.checkNaturalNumErrorMsg);
+    				quantityError.setText("Please search an item before adding it to inventory");
     			}
     		}
     	};

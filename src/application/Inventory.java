@@ -1,5 +1,8 @@
 package application;
 
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -12,6 +15,18 @@ public class Inventory {
 	// Adds new instance of an item with variables set to arguments required to ArrayList (i.e., the inventory)
 	public static void createInventoryItem(String itemToAdd, int tagToAdd, Double wholesalePriceToAdd, Double retailPriceToAdd, int stockToAdd) {
 		listInventory.add(new Item(itemToAdd, tagToAdd, wholesalePriceToAdd, retailPriceToAdd, stockToAdd));
+		updateInventoryToFile();
+//		try {
+//			FileWriter inventoryFile = new FileWriter("inventory", false);
+//			for (Item item : listInventory) {
+//				// inventoryFile.write(itemToAdd + "," + tagToAdd + "," + wholesalePriceToAdd + "," + retailPriceToAdd + "," + stockToAdd + "\n");
+//				inventoryFile.write(item.getItem() + "," + item.getTag() + "," + item.getWholesalePrice() 
+//										+ "," + item.getRetailPrice() + "," + item.getStock() + "\n");
+//			}
+//			inventoryFile.close();
+//		} catch(IOException ioe) {
+//			System.out.println("Not loaded properly");
+//		}
 	}
 	
 	// Checks if all arguments as strings will be valid when parsed to create a new item instance variable
@@ -66,6 +81,20 @@ public class Inventory {
 
 	public static ArrayList<Item> getListInventory() {
 		return listInventory;
+	}
+	
+	public static void updateInventoryToFile() {
+		try {
+			FileWriter inventoryFile = new FileWriter("inventory", false);
+			for (Item item : listInventory) {
+				// inventoryFile.write(itemToAdd + "," + tagToAdd + "," + wholesalePriceToAdd + "," + retailPriceToAdd + "," + stockToAdd + "\n");
+				inventoryFile.write(item.getItem() + "," + item.getTag() + "," + item.getWholesalePrice() 
+										+ "," + item.getRetailPrice() + "," + item.getStock() + "\n");
+			}
+			inventoryFile.close();
+		} catch(IOException ioe) {
+			System.out.println("Not loaded properly");
+		}
 	}
 	
 	

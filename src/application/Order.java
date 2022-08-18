@@ -71,6 +71,7 @@ public class Order {
 			}
 		}
 		order.removeAll(observableListOrder);
+		Inventory.updateInventoryToFile();
 	}
 	
 	public static void clearOrder() {

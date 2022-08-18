@@ -17,55 +17,56 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-public class ManageInventoryScene extends FinalProjectController {
+/**
+ * ManageInventoryScene extends FinalProjectController 
+ * @author steph
+ *
+ */
+public abstract class ManageInventoryScene extends FinalProjectController {
 	
 	public static void loadScene() {
+		// Set menuScene to current scene (so that the user can return to the menuScene)
 		Scene menuScene = applicationStage.getScene();
-    	// Manage Inventory Scene
-    	// Scene Features
+		
+
+    	// Building the Manage Inventory scene in JavaFX out of a root BorderPane (for this scene)
     	BorderPane manageInventoryContainer = new BorderPane();
+    	manageInventoryContainer.setPadding(new Insets(20));
     	
+    	// Return to menu button placed in bottom of pane
     	HBox bottomOfPane = new HBox();
     	Button returnToMenu = new Button("Return to Menu");
-    	// Adds returnToMenu centered right in the bottom of the createOrder Container
     	bottomOfPane.getChildren().addAll(returnToMenu);
     	bottomOfPane.setAlignment(Pos.CENTER_LEFT);
     	
-    	// Middle of BorderPane - contains table and place to enter new values
-    	VBox middleOfPane = new VBox();
+    	// Return to the main menu when menu button is pressed
+    	returnToMenu.setOnAction(pressed -> applicationStage.setScene(menuScene));
     	
+    	// Inventory table (set of columns inside a table that list all items currently in inventory along with their respective details)
     	TableView<Item> inventoryTable = new TableView<Item>();
-    	
     	inventoryTable.setMaxSize(500, 300);
-    	inventoryTable.setPlaceholder(new Label("No inventory to display"));
-    	
+    	inventoryTable.setPlaceholder(new Label("No inventory to display"));  	
     	TableColumn<Item, String> itemCol = new TableColumn<Item, String>("Item");
     	itemCol.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
     	itemCol.setPrefWidth(150);
-    	
     	TableColumn<Item, Integer> tagCol = new TableColumn<Item, Integer>("Tag");
     	tagCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("tag"));
     	tagCol.setPrefWidth(50);
-    	
     	TableColumn<Item, Double> wholesalePriceCol = new TableColumn<Item, Double>("Wholesale Price");
     	wholesalePriceCol.setCellValueFactory(new PropertyValueFactory<Item, Double>("wholesalePrice"));
     	wholesalePriceCol.setPrefWidth(100);
-    	
     	TableColumn<Item, Double> retailPriceCol = new TableColumn<Item, Double>("Retail Price");
     	retailPriceCol.setCellValueFactory(new PropertyValueFactory<Item, Double>("retailPrice"));
     	retailPriceCol.setPrefWidth(100);
-    	
     	TableColumn<Item, Integer> currentStockCol = new TableColumn<Item, Integer>("Stock");
     	currentStockCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("stock"));
     	currentStockCol.setPrefWidth(100);
-    	
     	inventoryTable.getColumns().addAll(itemCol, tagCol, wholesalePriceCol, retailPriceCol, currentStockCol);
-    	
     	// Link the table columns to the Inventory's observable list inventory (maintaining the correct values for each column)
     	inventoryTable.setItems(Inventory.getObservableListInventory());
-
-    	// Creating text boxes to enter new inventory items
+    	
+    	// Add new item to inventory (a set of TextFields and a Button)
+    	VBox middleOfPane = new VBox();
     	HBox addInventory = new HBox();
     	addInventory.setPadding(new Insets(10, 10, 10, 10));
     	addInventory.setAlignment(Pos.CENTER);
@@ -91,15 +92,20 @@ public class ManageInventoryScene extends FinalProjectController {
     	ArrayList<TextField> inputTextFields = new ArrayList<TextField>();
     	Collections.addAll(inputTextFields, itemName, itemTag, itemWholesalePrice, itemRetailPrice, itemCurrentStock);
     	
+    	// Set middle of pane including table and add item menu
     	middleOfPane.getChildren().addAll(inventoryTable, addInventory);
-    	middleOfPane.setAlignment(Pos.CENTER);
+    	middleOfPane.setAlignment(Pos.CENTER); 	
     	
+    	// Add bottomOfPane (return to menu button) and middleOfPane (inventory table and add item)
+    	manageInventoryContainer.setBottom(bottomOfPane);
+    	manageInventoryContainer.setCenter(middleOfPane);
     	
+    	// Define new scene built out of root manageInventory Container
+    	Scene InventoryScene = new Scene(manageInventoryContainer, 800, 600);
     	
-    	// Return to the main menu 
-    	returnToMenu.setOnAction(pressed -> applicationStage.setScene(menuScene));
+
     	
-    	// Event handler method to add the entered values to the inventory and clear the entry table (if inputted correctly) 
+    	// Set event handler method to add the entered values to the inventory and clear the entry table (if inputed correctly) to be called on add to inventory button
     	EventHandler<ActionEvent> addToInventory = new EventHandler<ActionEvent>() {
     		public void handle(ActionEvent buttonPressed) {
     			String inputName = itemName.getText(); 
@@ -129,14 +135,9 @@ public class ManageInventoryScene extends FinalProjectController {
     			}
     		}
     	};
-    	
-    	
-    	// Scene and layout details and adding
     	addInventoryDetails.setOnAction(addToInventory);
-    	manageInventoryContainer.setPadding(new Insets(20));
-    	manageInventoryContainer.setBottom(bottomOfPane);
-    	manageInventoryContainer.setCenter(middleOfPane);
-    	Scene InventoryScene = new Scene(manageInventoryContainer, 800, 600);
+    	
+    	// Set scene to inventory scene
     	applicationStage.setScene(InventoryScene);
 	}
 

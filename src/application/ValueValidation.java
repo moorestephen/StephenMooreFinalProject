@@ -1,6 +1,6 @@
 package application;
 
-public class ValueValidation {
+public abstract class ValueValidation {
 	
 	final static String checkStringErrorMsg = "Enter a string at least one character in length";
 	final static String checkNaturalNumErrorMsg = "Enter an integer greater than or equal to 1";
@@ -74,5 +74,12 @@ public class ValueValidation {
 		return repeatFound;
 	}
 	
-	
+	public static boolean checkInteger(String inputString) {
+		try {
+			Integer.parseInt(inputString);
+			return true;
+		} catch(NumberFormatException e) {
+			return false;
+		}
+	}
 }
