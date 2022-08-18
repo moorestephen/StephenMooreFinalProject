@@ -5,7 +5,7 @@ Inventory Management System App. Coded for javac 18.0.2 and javafx-sdk-18.0.2 (m
 application. Application includes a plain-text file where the inventory is stored from each use of the app so that when the user reopens, the inventory has 
 not been lost. Current class diagram is also included in the GitHub repository for reference (under the name InventoryManagementClassDiagram). Enjoy!
 
-Features to be added in next implementation:
+Features to be added in next implementation (currently in progress):
   - Ability to edit valus in items already in inventory
     -> probably accomplished by having a similar search UI to the order scene but instead allowing for the adding/subtracting of stock and modification of
        wholesale and/or retail price
