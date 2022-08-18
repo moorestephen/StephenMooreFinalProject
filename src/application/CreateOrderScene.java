@@ -21,7 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 /**
- * Abstract class CreateOrderScene extends FinalProjectController and loads the create order scene
+ * Class CreateOrderScene extends FinalProjectController and loads the create order scene
  * @author steph
  *
  */
