@@ -14,4 +14,5 @@ Features to be added in next implementation:
   - Ability to modify order quantities without having to clear and restart the order
     -> probably accomplished by creating a search method like that in the order class (searching from inventory) but have it instead search from the order list
        and allow for editing of the ItemOrder objects using setters
+       
 Note that a few setter methods required for these above modifications are currently in the code of the project
