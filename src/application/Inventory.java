@@ -1,80 +1,100 @@
 package application;
 
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Inventory {
-	private String item;
-	private int tag;
-	private double wholesalePrice;
-	private double retailPrice;
-	private int stock;
-	private static ArrayList<Inventory> listInventory = new ArrayList<Inventory>();
-	private static ObservableList<Inventory> observableListInventory = FXCollections.observableList(listInventory);
+	private static ArrayList<Item> listInventory = new ArrayList<Item>();
+	private static ObservableList<Item> observableListInventory = FXCollections.observableList(listInventory);
 	
-	
-	public Inventory(String item, int tag, double wholesalePrice, double retailPrice, int stock) {
-		this.item = item;
-		this.tag = tag;
-		this.wholesalePrice = wholesalePrice;
-		this.retailPrice = retailPrice;
-		this.stock = stock;
-	}
-	
+	// Adds new instance of an item with variables set to arguments required to ArrayList (i.e., the inventory)
 	public static void createInventoryItem(String itemToAdd, int tagToAdd, Double wholesalePriceToAdd, Double retailPriceToAdd, int stockToAdd) {
-		listInventory.add(new Inventory(itemToAdd, tagToAdd, wholesalePriceToAdd, retailPriceToAdd, stockToAdd));
-		System.out.println(observableListInventory);
-		System.out.println(listInventory);
+		listInventory.add(new Item(itemToAdd, tagToAdd, wholesalePriceToAdd, retailPriceToAdd, stockToAdd));
+		updateInventoryToFile();
+//		try {
+//			FileWriter inventoryFile = new FileWriter("inventory", false);
+//			for (Item item : listInventory) {
+//				// inventoryFile.write(itemToAdd + "," + tagToAdd + "," + wholesalePriceToAdd + "," + retailPriceToAdd + "," + stockToAdd + "\n");
+//				inventoryFile.write(item.getItem() + "," + item.getTag() + "," + item.getWholesalePrice() 
+//										+ "," + item.getRetailPrice() + "," + item.getStock() + "\n");
+//			}
+//			inventoryFile.close();
+//		} catch(IOException ioe) {
+//			System.out.println("Not loaded properly");
+//		}
 	}
-
-	public String getItem() {
-		return item;
+	
+	// Checks if all arguments as strings will be valid when parsed to create a new item instance variable
+	public static boolean checkItemValidity(String itemToAdd, String tagToAdd, String wholesalePriceToAdd, String retailPriceToAdd, String stockToAdd) {
+		if (ValueValidation.checkString(itemToAdd) && ValueValidation.checkNaturalNum(tagToAdd) && ValueValidation.checkValidMoney(wholesalePriceToAdd)
+				&& ValueValidation.checkValidMoney(retailPriceToAdd) && ValueValidation.checkWholeNum(stockToAdd) && !ValueValidation.checkTagRepeats(tagToAdd) 
+				&& !ValueValidation.checkNameRepeats(itemToAdd)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
-	public void setItem(String item) {
-		this.item = item;
+	
+	// Converts all arguments as strings to the required argument type for createInventoryItem (useful for pulling values from text boxes)
+	public static void addToInventory(String itemToAdd, String tagToAdd, String wholesalePriceToAdd, String retailPriceToAdd, String stockToAdd) {
+		createInventoryItem(itemToAdd, 
+				Integer.parseInt(tagToAdd), 
+				Double.parseDouble(wholesalePriceToAdd),
+				Double.parseDouble(retailPriceToAdd),
+				Integer.parseInt(stockToAdd));
 	}
-
-	public int getTag() {
-		return tag;
+	
+	// Search for while making an order
+	public static Item searchInventoryName(String nameSearched) {
+		for (Item inventoryItem : listInventory) {
+			if (inventoryItem.getItem().equals(nameSearched)) {
+				return new Item(inventoryItem);
+			}
+		}
+		// Returns a null item if no match is found - must be managed at next step
+		return null;
 	}
-
-	public void setTag(int tag) {
-		this.tag = tag;
+	
+	
+	public static Item searchInventoryTag(String tagSearched) {
+		for (Item inventoryItem : listInventory) {
+			if (inventoryItem.getTag() == Integer.parseInt(tagSearched)) {
+				return new Item(inventoryItem);
+			}
+		}
+		// Returns a null item if no match is found - must be managed at next step
+		return null;
 	}
-
-	public double getWholesalePrice() {
-		return wholesalePrice;
-	}
-
-	public void setWholesalePrice(double wholesalePrice) {
-		this.wholesalePrice = wholesalePrice;
-	}
-
-	public double getRetailPrice() {
-		return retailPrice;
-	}
-
-	public void setRetailPrice(double retailPrice) {
-		this.retailPrice = retailPrice;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
-	public static ObservableList<Inventory> getObservableListInventory() {
+	
+	public static ObservableList<Item> getObservableListInventory() {
 		return observableListInventory;
 	}
 
-	public void setObservableListInventory(ObservableList<Inventory> observableListInventory) {
-		this.observableListInventory = observableListInventory;
+	public void setObservableListInventory(ObservableList<Item> observableListInventory) {
+		Inventory.observableListInventory = observableListInventory;
+	}
+
+	public static ArrayList<Item> getListInventory() {
+		return listInventory;
+	}
+	
+	public static void updateInventoryToFile() {
+		try {
+			FileWriter inventoryFile = new FileWriter("inventory", false);
+			for (Item item : listInventory) {
+				// inventoryFile.write(itemToAdd + "," + tagToAdd + "," + wholesalePriceToAdd + "," + retailPriceToAdd + "," + stockToAdd + "\n");
+				inventoryFile.write(item.getItem() + "," + item.getTag() + "," + item.getWholesalePrice() 
+										+ "," + item.getRetailPrice() + "," + item.getStock() + "\n");
+			}
+			inventoryFile.close();
+		} catch(IOException ioe) {
+			System.out.println("Not loaded properly");
+		}
 	}
 	
 	
