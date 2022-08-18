@@ -1,8 +1,6 @@
 # StephenMooreFinalProject
 CPSC 233 Final Project
 
-Currently in progress. Only manage inventory track is currently somewhat functioning. Has a table where values can be added to be added to an Inventory database. Currently
-doesn't have input validation (currently in progress) that will only correct entries into the table (currently, an error message is thrown). Plan for the rest of the day/
-weekend is to add input validation and the ability to edit inventory (database) values and to have that be a validated process. Next, to create a create order section
-that checks current inventory to make sure that the order is possible. Order will also tally total cost, tax, etc.. Once an order is made, the inventory will be modified accordingly. Finally, the review orders section
-will be an area to review previous orders made, including the number of orders the orders' finances (e.g., profit, cost, etc.).
+Inventory Management System App. Coded for javac 18.0.2 and javafx-sdk-18.0.2 (most current versions as of writing), so ensure version are up to date for proper running 
+to run the application. Application includes a plain-text file where the inventory is stored from each use of the app so that when the user reopens, the inventory has 
+not been lost. Current class diagram is also included in the GitHub repository for reference. Enjoy!
