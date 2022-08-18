@@ -18,12 +18,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 /**
- * ManageInventoryScene extends FinalProjectController 
+ * ManageInventoryScene extends FinalProjectController and serves as a more organized manage inventory scene separate from the other scenes
  * @author steph
  *
  */
-public abstract class ManageInventoryScene extends FinalProjectController {
-	
+public class ManageInventoryScene extends FinalProjectController {
+	/**
+	 * loadScene sets the scene to InventoryScene, which is built within the method
+	 */
 	public static void loadScene() {
 		// Set menuScene to current scene (so that the user can return to the menuScene)
 		Scene menuScene = applicationStage.getScene();

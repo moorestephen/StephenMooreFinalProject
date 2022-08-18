@@ -12,11 +12,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
-
-
+/**
+ * Main class that initiates the application
+ * @author steph
+ *
+ */
 public class Main extends Application {
 	
-	
+	/**
+	 * Main start method for the application; loads the inventory from the inventory file
+	 */
 	@Override
 	public void start(Stage primaryStage){
 		try {
